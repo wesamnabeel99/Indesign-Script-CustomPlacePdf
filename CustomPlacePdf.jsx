@@ -1,6 +1,7 @@
 ﻿main();
 function main(){
 
+
   app.scriptPreferences.userInteractionLevel = UserInteractionLevels.interactWithAll;
 
   var myPDFFile = File.openDialog("Choose a PDF File");
@@ -40,7 +41,7 @@ function myChooseDocument(){
                 staticTexts.add({staticLabel:"Place PDF in:"});
             }
             with(dialogColumns.add()){
-                var myChooseDocumentDropdown = dropdowns.add({stringList:myDocumentNames, selectedIndex:0});
+                var myChooseDocumentDropdown = dropdowns.add({stringList:myDocumentNames, selectedIndex:1});
             }
         }
     }
@@ -64,7 +65,6 @@ function myChooseDocument(){
     return [myDocument, myNewDocument];
 }
 function myChoosePage(myDocument){
-  alert(myDocument.name);
     var myPageNames = new Array;
     //Get the names of the pages in the document
     for(var myCounter = 0; myCounter < myDocument.pages.length;myCounter++){
@@ -98,7 +98,7 @@ function myPlacePDF(myDocument, myPage, myPDFFile,spacing){
             myPDFPage = myPage.place(File(myPDFFile), [0,offset])[0];
         }
         catch(error){
-          alert("اكو شغلات صارت جوة الصفحة، دوس اوكي وكمل");
+          
           myPage = myDocument.pages.add();
           offset = 0;
           myPDFPage = myPage.place(File(myPDFFile), [0,offset])[0];
@@ -130,7 +130,7 @@ function getNumberFromUser() {
     var myNumber;
     var myDialog = new Window("dialog", "Space between equations?");
     myDialog.add("statictext", undefined, "Space between equations?");
-    var myEditText = myDialog.add("edittext", undefined, "0");
+    var myEditText = myDialog.add("edittext", [0, 0, 200, 24], "0");
     myEditText.active = true;
     myDialog.add("button", undefined, "OK");
     myDialog.show();
